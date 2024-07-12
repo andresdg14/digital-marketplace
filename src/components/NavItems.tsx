@@ -1,4 +1,5 @@
 'use client';
+
 import { PRODUCT_CATEGORIES } from '@/src/config';
 import { useEffect, useRef, useState } from 'react';
 import NavItem from './NavItem';
@@ -17,7 +18,7 @@ const NavItems = () => {
     };
     document.addEventListener('keydown', handler);
 
-    // Cleanup
+    // Cleanup function
     return () => {
       document.removeEventListener('keydown', handler);
     };
@@ -37,6 +38,7 @@ const NavItems = () => {
         };
 
         const isOpen = index === activeIndex;
+        const close = () => setActiveIndex(null);
 
         return (
           <NavItem
@@ -45,6 +47,7 @@ const NavItems = () => {
             isOpen={isOpen}
             key={category.value}
             isAnyOpen={isAnyOpen}
+            close={close}
           />
         );
       })}

@@ -14,9 +14,16 @@ interface NavItemProps {
   handleOpen: () => void;
   isOpen: boolean;
   isAnyOpen: boolean;
+  close: () => void;
 }
 
-const NavItem = ({ category, handleOpen, isOpen, isAnyOpen }: NavItemProps) => {
+const NavItem = ({
+  category,
+  handleOpen,
+  isOpen,
+  isAnyOpen,
+  close,
+}: NavItemProps) => {
   return (
     <div className="flex">
       <div className="relative flex items-center">
@@ -33,8 +40,10 @@ const NavItem = ({ category, handleOpen, isOpen, isAnyOpen }: NavItemProps) => {
           />
         </Button>
       </div>
+
       {isOpen ? (
         <div
+          onClick={() => close()}
           className={cn(
             'absolute inset-x-0 top-full text-sm text-muted-foreground',
             {
@@ -46,6 +55,7 @@ const NavItem = ({ category, handleOpen, isOpen, isAnyOpen }: NavItemProps) => {
             className="absolute inset-0 top-1/2 bg-white shadow"
             aria-hidden="true"
           />
+
           <div className="relative bg-white">
             <div className="mx-auto max-w-7xl px-8">
               <div className="grid grid-cols-4 gap-x-8 gap-y-10 py-16">
